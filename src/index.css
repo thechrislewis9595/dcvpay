@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Inter", sans-serif;
+  /* DCvpaypalette */
+  --color-ink: #000000;       /* Black */
+  --color-charcoal: #111111;  /* Dark charcoal */
+  --color-brand: #E50914;     /* Red */
+  --color-brand-hover: #ff1f2a;
+  --color-brand-dark: #b20710;
+  --color-muted: #A0A0A0;     /* Gray */
+  --color-line: rgba(0, 0, 0, 0.09);
+  /* light surface tokens */
+  --color-fg: #000000;
+  --color-soft: #f6f6f6;
+  --color-sub: #555555;
+}
+
+html { scroll-behavior: smooth; background: #fff; }
+body { @apply bg-white text-fg antialiased font-sans; }
+::selection { background: #E50914; color: #fff; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-12px) rotate(var(--r,0deg)); } }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 0 rgba(229,9,20,.7);} 50% { box-shadow: 0 0 0 7px rgba(229,9,20,0);} }
+.pulse-dot { animation: pulse-dot 2s infinite; }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-6px) scale(.98);} to { opacity: 1; transform: none; } }
+.drop-in { animation: dropIn .18s ease-out; }
+@keyframes typing { 0%,80%,100% { opacity: .3; transform: translateY(0);} 40% { opacity: 1; transform: translateY(-3px);} }
+.typing span { animation: typing 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: .15s; }
+.typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes sheen { from { transform: translateX(-100%);} to { transform: translateX(100%);} }
+
+.grid-bg { background-image: linear-gradient(rgba(0,0,0,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.045) 1px, transparent 1px); background-size: 48px 48px; }
+.red-glow { background: radial-gradient(closest-side, rgba(229,9,20,.14), transparent); }
+.grid-bg-dark { background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 48px 48px; }
+.card { @apply rounded-2xl bg-white bg-gradient-to-b from-white to-[#fafbff] border border-line shadow-[0_1px_2px_rgba(0,0,0,.04)] transition-all duration-300; }
+.card-hover { @apply hover:-translate-y-1 hover:border-black/15 hover:shadow-[0_18px_40px_-22px_rgba(0,0,0,.28)]; }
+.input { @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-fg placeholder:text-sub/50 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/15; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* ── Extended palette accents ── */
+.rainbow-line { background: linear-gradient(90deg, #E50914 0%, #F59E0B 25%, #10B981 50%, #2563EB 75%, #7C3AED 100%); }
+.text-gradient { background: linear-gradient(90deg, #E50914 0%, #F43F5E 45%, #7C3AED 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mesh-hero {
+  background:
+    radial-gradient(40% 50% at 85% 20%, rgba(124,58,237,.16), transparent 70%),
+    radial-gradient(35% 45% at 70% 80%, rgba(37,99,235,.15), transparent 70%),
+    radial-gradient(30% 40% at 10% 90%, rgba(16,185,129,.13), transparent 70%),
+    radial-gradient(35% 45% at 15% 10%, rgba(244,63,94,.10), transparent 70%);
+}
+.night { background: radial-gradient(60% 80% at 100% 0%, rgba(37,99,235,.35), transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(124,58,237,.30), transparent 60%), #0B0F1E; }
+
+/* ── Colour grading ── */
+.btn-grad { background-image: linear-gradient(110deg, #E50914 0%, #F43F5E 40%, #8B5CF6 100%); background-size: 170% 100%; background-position: 0% 50%; transition: background-position .5s ease, box-shadow .3s ease, transform .2s ease; }
+.btn-grad:hover { background-position: 100% 50%; box-shadow: 0 14px 30px -12px rgba(139, 92, 246, .55); }
+.grad-emerald { background-image: linear-gradient(135deg, #10B981, #0EA5E9); }
+.grad-violet { background-image: linear-gradient(135deg, #6366F1, #A855F7); }
+.grad-sunset { background-image: linear-gradient(135deg, #F43F5E, #FB923C); }
+.text-gradient-cool { background: linear-gradient(90deg, #2563EB, #7C3AED 55%, #DB2777); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ══ Layered pastel backgrounds: colour blobs + tinted pattern ══ */
+[class*="wash-"] { position: relative; isolation: isolate; }
+[class*="wash-"]::before, [class*="wash-"]::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+/* pattern layer, faded towards the centre so content stays clean */
+[class*="wash-"]::after { -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, transparent 25%, #000 80%); mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, transparent 25%, #000 80%); opacity: .9; }
+/* blob layer drifts very slowly */
+[class*="wash-"]::before { animation: drift 26s ease-in-out infinite alternate; background-size: 120% 120%; }
+@keyframes drift { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+@media (prefers-reduced-motion: reduce) { [class*="wash-"]::before { animation: none; } }
+
+/* 1 · Blue: sky → indigo → lavender, dotted */
+.wash-blue { background: #f7f9ff; }
+.wash-blue::before { background-image:
+  radial-gradient(38% 55% at 8% 12%, rgba(56,189,248,.20), transparent 70%),
+  radial-gradient(35% 50% at 92% 18%, rgba(99,102,241,.16), transparent 70%),
+  radial-gradient(40% 55% at 70% 95%, rgba(167,139,250,.16), transparent 70%); }
+.wash-blue::after { background-image: radial-gradient(rgba(79,70,229,.22) 1.2px, transparent 1.4px); background-size: 22px 22px; }
+
+/* 2 · Mint: emerald → teal → aqua, diagonal lines */
+.wash-mint { background: #f5fdf9; }
+.wash-mint::before { background-image:
+  radial-gradient(40% 55% at 90% 10%, rgba(16,185,129,.18), transparent 70%),
+  radial-gradient(35% 50% at 10% 85%, rgba(20,184,166,.16), transparent 70%),
+  radial-gradient(30% 45% at 55% 50%, rgba(34,211,238,.10), transparent 70%); }
+.wash-mint::after { background-image: repeating-linear-gradient(135deg, rgba(13,148,136,.12) 0 1px, transparent 1px 14px); }
+
+/* 3 · Violet: lilac → fuchsia → mint, plus marks */
+.wash-violet { background: #faf8ff; }
+.wash-violet::before { background-image:
+  radial-gradient(38% 55% at 12% 15%, rgba(139,92,246,.18), transparent 70%),
+  radial-gradient(35% 50% at 88% 30%, rgba(217,70,239,.13), transparent 70%),
+  radial-gradient(40% 55% at 60% 100%, rgba(52,211,153,.14), transparent 70%); }
+.wash-violet::after { background-image:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M16 12v8M12 16h8' stroke='%237c3aed' stroke-opacity='.22' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 32px 32px; }
+
+/* 4 · Warm: peach → rose → amber, concentric rings */
+.wash-warm { background: #fffaf6; }
+.wash-warm::before { background-image:
+  radial-gradient(38% 55% at 10% 20%, rgba(251,146,60,.18), transparent 70%),
+  radial-gradient(35% 50% at 90% 15%, rgba(244,63,94,.12), transparent 70%),
+  radial-gradient(40% 55% at 50% 100%, rgba(251,191,36,.16), transparent 70%); }
+.wash-warm::after { background-image: repeating-radial-gradient(circle at 100% 0%, transparent 0 22px, rgba(234,88,12,.10) 22px 23px); }
+
+/* 5 · Sky: cyan → blue, fine grid */
+.wash-sky { background: #f5fbff; }
+.wash-sky::before { background-image:
+  radial-gradient(40% 55% at 85% 10%, rgba(34,211,238,.18), transparent 70%),
+  radial-gradient(38% 50% at 15% 90%, rgba(59,130,246,.15), transparent 70%); }
+.wash-sky::after { background-image: linear-gradient(rgba(14,116,144,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(14,116,144,.09) 1px, transparent 1px); background-size: 30px 30px; }
+
+/* 6 · Lilac: rose → violet → sky, soft waves */
+.wash-lilac { background: #fcf9ff; }
+.wash-lilac::before { background-image:
+  radial-gradient(36% 52% at 5% 50%, rgba(244,114,182,.14), transparent 70%),
+  radial-gradient(38% 55% at 50% 0%, rgba(167,139,250,.16), transparent 70%),
+  radial-gradient(36% 52% at 95% 70%, rgba(56,189,248,.14), transparent 70%); }
+.wash-lilac::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='24'%3E%3Cpath d='M0 12c10 0 10-8 20-8s10 8 20 8 10-8 20-8 10 8 20 8' fill='none' stroke='%238b5cf6' stroke-opacity='.16' stroke-width='1.3'/%3E%3C/svg%3E"); background-size: 80px 24px; }
+
+/* 7 · Sunrise: amber → lime → emerald, triangles */
+.wash-sunrise { background: #fffdf5; }
+.wash-sunrise::before { background-image:
+  radial-gradient(40% 55% at 12% 10%, rgba(250,204,21,.18), transparent 70%),
+  radial-gradient(36% 52% at 88% 85%, rgba(132,204,22,.14), transparent 70%),
+  radial-gradient(32% 48% at 70% 20%, rgba(16,185,129,.10), transparent 70%); }
+.wash-sunrise::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='32'%3E%3Cpath d='M18 10l5 9h-10z' fill='none' stroke='%23ca8a04' stroke-opacity='.20' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: 36px 32px; }
+
+/* richer hero mesh: 6 colours + dots */
+.mesh-hero {
+  background:
+    radial-gradient(rgba(99,102,241,.10) 1px, transparent 1.3px) 0 0 / 24px 24px,
+    radial-gradient(38% 50% at 88% 18%, rgba(139,92,246,.18), transparent 70%),
+    radial-gradient(32% 45% at 68% 85%, rgba(59,130,246,.16), transparent 70%),
+    radial-gradient(30% 40% at 8% 88%, rgba(16,185,129,.15), transparent 70%),
+    radial-gradient(34% 45% at 12% 8%, rgba(244,63,94,.11), transparent 70%),
+    radial-gradient(26% 36% at 45% 40%, rgba(251,191,36,.10), transparent 70%),
+    radial-gradient(28% 40% at 98% 60%, rgba(34,211,238,.12), transparent 70%);
+  animation: drift 30s ease-in-out infinite alternate;
+}
+
+/* footer & dark sections: faint colour aurora on black */
+.aurora-dark { background:
+  radial-gradient(35% 60% at 0% 0%, rgba(244,63,94,.13), transparent 70%),
+  radial-gradient(35% 60% at 50% 0%, rgba(139,92,246,.12), transparent 70%),
+  radial-gradient(35% 60% at 100% 0%, rgba(14,165,233,.12), transparent 70%),
+  radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.3px) 0 0 / 22px 22px; }
