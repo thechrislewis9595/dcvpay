@@ -22,7 +22,7 @@ export default function Contact() {
       <PageHeader eyebrow="Contact us" title="Let's talk payments" subtitle="Ask about pricing, partnerships or integration help — our team responds within one business day." />
       <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 md:py-20 grid lg:grid-cols-[1fr_1.4fr] gap-12">
         <Reveal className="space-y-5">
-          {([[Mail, "Email", TEAM_EMAIL, `mailto:${TEAM_EMAIL}`, "bg-blue-600"], [Phone, "Phone", "+91 80 4000 1234", "tel:+918040001234", "bg-emerald-600"], [MapPin, "Office", "Level 9, Prestige Tech Park, Bengaluru 560103", undefined, "bg-violet-600"]] as const).map(([Ic, l, v, href, bg]) => (
+          {([[Mail, "Email", TEAM_EMAIL, `mailto:${TEAM_EMAIL}`, "bg-blue-600"], [Phone, "Phone", "+91 78386 20310", "tel:+917838620310", "bg-emerald-600"], [MapPin, "Office", "Unit # 7/240 Ambedkar Nagar, Sundar Block, New Delhi - 110080", undefined, "bg-violet-600"]] as const).map(([Ic, l, v, href, bg]) => (
             <a key={l} href={href} className="group flex gap-4 card p-6 hover:border-indigo-300">
               <span className={`grid place-items-center w-11 h-11 shrink-0 rounded-xl text-white ${bg}`}><Ic className="w-5 h-5" /></span>
               <div><p className="text-sm text-sub">{l}</p><p className="font-semibold group-hover:text-indigo-600 transition-colors">{v}</p></div>
@@ -80,7 +80,7 @@ export default function Contact() {
       <FaqSection className="" title="Before you reach out" faqs={[
         { q: "How quickly will I hear back?", a: "Sales and partnership enquiries get a reply within one business day. Live customers get 24×7 support." },
         { q: "Do you offer a free trial?", a: "The sandbox is free forever. For production, our team will share pricing based on your volumes." },
-        { q: "Can I visit your office?", a: "Yes. Book a meeting with our team and we'll be happy to host you in Bengaluru, Mumbai or Gurugram." },
+        { q: "Can I visit your office?", a: "Yes. Book a meeting with our team before visiting us at Unit # 7/240 Ambedkar Nagar, Sundar Block, New Delhi - 110080." },
       ]} />
     </>
   );

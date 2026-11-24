@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 // import { Award, ArrowRight } from "lucide-react";
 // import { TONES, toneSoft, toneText } from "../components/ui";
-import { Target, Heart, ShieldCheck, Lightbulb } from "lucide-react";
+import { Target, Heart, ShieldCheck, Lightbulb, Phone, MapPin } from "lucide-react";
 import { PageHeader, SimpleCard, Reveal, Eyebrow } from "../components/ui";
 
 export default function About() {
@@ -22,6 +22,35 @@ export default function About() {
               <p className="mt-1 text-sm text-sub group-hover:text-white/90 transition-colors">{l}</p>
             </div>
           ))}
+        </Reveal>
+      </section>
+      <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-16 md:pb-20">
+        <Reveal className="card p-6 sm:p-8 md:p-10">
+          <Eyebrow>Company information</Eyebrow>
+          <h2 className="mt-5 font-display font-bold text-2xl md:text-3xl tracking-tight">About DCV</h2>
+          <p className="mt-4 max-w-3xl text-lg text-sub leading-relaxed">
+            DCV is owned and operated by Aurelix Private Limited.
+          </p>
+          <div className="mt-8 grid sm:grid-cols-2 gap-5">
+            <a href="tel:+917838620310" className="group flex items-start gap-4 rounded-xl border border-line p-5 hover:border-indigo-300 transition-colors">
+              <span className="grid place-items-center w-11 h-11 shrink-0 rounded-xl bg-emerald-600 text-white">
+                <Phone className="w-5 h-5" />
+              </span>
+              <div>
+                <p className="text-sm text-sub">Phone</p>
+                <p className="mt-1 font-semibold group-hover:text-indigo-600 transition-colors">+91 78386 20310</p>
+              </div>
+            </a>
+            <div className="flex items-start gap-4 rounded-xl border border-line p-5">
+              <span className="grid place-items-center w-11 h-11 shrink-0 rounded-xl bg-violet-600 text-white">
+                <MapPin className="w-5 h-5" />
+              </span>
+              <div>
+                <p className="text-sm text-sub">Address</p>
+                <p className="mt-1 font-semibold leading-relaxed">Unit # 7/240 Ambedkar Nagar, Sundar Block, New Delhi - 110080</p>
+              </div>
+            </div>
+          </div>
         </Reveal>
       </section>
       <section className="wash-lilac border-y border-line py-20">
